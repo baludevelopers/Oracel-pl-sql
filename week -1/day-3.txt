@@ -1,0 +1,166 @@
+create table Employee(
+id number,
+name varchar2(20),
+gender varchar2(10),
+salary float,
+department varchar2(20)
+);
+
+
+-----alter commmand
+alter table Employee add city varchar(20);
+alter table Employee 
+add constraints pk_Employee primary key(id);
+alter table employee add email varchar2(30);
+
+
+------insert comammnd--------
+insert into Employee values(1,'bala','male',40000,'ti','uk','bala@gamil.com');
+insert into Employee values(2,'krishna','male',40000,'hr','austrial','krishna@gmail.com');
+insert into Employee values(3,'asha','female',2323200,'it','canda','asha@gmail.com');
+insert into Employee values(4,'keerthi','female',60000,'planning','us','keerthi@gmail.com');
+insert into Employee values(5,'ramya','female',32300,'testing','germany','ramya@yahoo.com');
+insert into Employee values(6,'gayatri','female',22220,'testing','canada','gayatri@yahoo.com');
+
+insert into Employee values(7,'radha','female',23400,'testing','uk','radha@yahoo.com');
+
+
+
+select * from Employee;
+
+drop table Employee;
+
+
+--------------where clause------------
+
+select * from Employee where id=5;
+
+select * from Employee where gender='female';
+
+
+select * from Employee where city='us';
+
+select * from Employee where salary<40000;
+
+select * from Employee where gender!='female';
+
+
+select * from Employee where id in (1,2,3);
+
+select * from Employee where department in ('hr','ti','it');
+
+-------------AND , OR OPERATOR--------------
+
+
+select * from Employee where department='testing' and name in('gayatri','radha');
+
+
+
+select * from Employee where (department='testing' or name in('gayatri','radha','bala')) and salary=40000;
+
+-------------like %,_  -----------
+
+select * from Employee where email like '%gmail%';
+
+select * from Employee where email like '%yahoo%';
+
+
+select * from Employee where email like '_____gmail%';
+
+
+select * from Employee where name like 'b%';
+
+
+--------between operator-----
+select * from Employee where id between 1 and 3;
+
+------------------Order by= asc(default), desc -----------
+
+select * from Employee order by id desc;
+
+select * from Employee order by name asc;
+
+select * from Employee order by name desc;
+
+select * from Employee order by salary asc;
+
+select * from Employee order by salary desc,name desc;
+
+-------------group by----------
+
+create table product(id number primary key, name varchar2(20), qunatity number, price float,city varchar2(30));
+
+
+insert into product values(1,'iphone11',2,200000,'uk');
+insert into product values(2,'iphone11',6,200000,'uk');
+insert into product values(3,'iphone12',5,9990000,'us');
+insert into product values(4,'iphone11',2,200000,'us');
+insert into product values(5,'iphone12',1,400000,'uk');
+
+select * from product;
+
+drop table product;
+
+
+select sum(qunatity) as total,sum(price)as totalprice, city from product group by city having city='uk';
+
+
+select sum(qunatity) as total,sum(price)as totalprice, city from product where city='uk' group by city;
+
+-------------
+
+create table Employee(
+id number,
+name varchar2(20),
+gender varchar2(10),
+salary float,
+department varchar2(20)
+);
+
+create table department(dept_id number primary key, dep_name varchar2(20));
+insert into department values(1,'hr');
+insert into department values(2,'admin');
+insert into department values(3,'it');
+insert into department values(4,'hr');
+
+select * from Employee;
+select * from department;
+
+
+create table EmployeeDetails(id number primary key, name varchar2(30),gender varchar(10),city varchar2(50),
+department_id number not null,
+constraint fk_depatment_dept_id foreign key (department_id) references department (dept_id)
+);
+
+select * from EmployeeDetails;
+
+
+insert into EmployeeDetails values(1,'jhone','male','us',1);
+
+insert into EmployeeDetails values(2,'bala','male','us',2);
+
+insert into EmployeeDetails values(3,'krishna','male','us',2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,302 @@
+REM   Script: day -4
+REM   day -4
+
+SEELCT * FROM DUAL;
+
+
+select ABS(-15) from DUAL;
+
+select ABS(-15) as Absolute from DUAL;
+
+select EXP(4) as Value from DUAL;
+
+select CEIL(123.242) from DUAL;
+
+select CEIL(123.242) from DUAL;
+
+select FLOOR(1212.323) from DUAL;
+
+select EXP(4) as Value from DUAL;
+
+select POWER(5,2) from DUAL;
+
+select ROUND(121.312) from DUAL;
+
+select ROUND(121.312,0) from DUAL;
+
+select ROUND(121.312,2) from DUAL;
+
+select ROUND(121.312242,4) from DUAL;
+
+select SIGN(-15) from DUAL;
+
+select SIGN(10) from DAUL;
+
+select SIGN(10) from DUAL;
+
+select SIGN(15) from DUAL;
+
+select SIGN(-119) from DUAL;
+
+select SIGN(15) from DUAL;
+
+select TRUNC(123.435343) from DUAL;
+
+select TRUNC(123.435343,3) from DUAL;
+
+selet SQRT(16) from DUAL;
+
+
+select SQRT(16) from DUAL;
+
+select SQRT(256) from DUAL;
+
+select ROUND(SQRT(256)) from DUAL;
+
+select ROUND(SQRT(2524)) from DUAL;
+
+select CEIL(123.242) from DUAL;
+
+select FLOOR(1212.323) from DUAL;
+
+select CEIL(123.242) from DUAL;
+
+select FLOOR(1212.323) from DUAL;
+
+select POWER(5,2) as powervalue from DUAL;
+
+select log(10,2) from DUAL;
+
+select cos(40) from dual;
+
+select chr(65) from dual;
+
+create table userdata( 
+first_name varchar2(20), 
+middle_name varchar2(20), 
+city varchar2(40) 
+);
+
+insert into userdata values('bala','krishna','uk');
+
+select * from userdata;
+
+select concat(first_name,middle_name)as fullname from userdata;
+
+select INITCAP('my first tutorial') from dual;
+
+select upper('my first tutorial') from dual;
+
+select lower('my first REREIR') from dual;
+
+select LTRIM('                  my first tutorial             ') from dual;
+
+select rtrim('                  my first tutorial             ') from dual;
+
+select rtrim(LTRIM('                  my first tutorial             ')) as name  from dual;
+
+select trim('                       my first tutorrial            ') from dual;
+
+select replace('bala@gmail.com','gamil','yahoo') from dual;
+
+select substr('AERNEAURARU',3,5) from dual;
+
+select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ',1,5) from dual;
+
+select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ',-1,5) from dual;
+
+select substr('ABCDEFGHIJ  KLMNOPQRSTUVWXYZ',1,-5) from dual;
+
+select substr('ABCDEFGHIJ  KLMNOPQRSTUVWXYZ',-1,-5) from dual;
+
+select upper(first_name), lower(middle_name) , replace(city,'usa','uk') from userdata;
+
+select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') from userdata;
+
+select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city from userdata;
+
+select * from userdata;
+
+select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city substr(middle_name,1,3) as subname from userdata;
+
+select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city substr(middle_name,1,3) as subname from userdata;
+
+select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city, substr(middle_name,1,3) as subname from userdata;
+
+select * from userdata;
+
+select length('ABCDEFGHIJKL') from dual;
+
+select length('ABCDE    FGHIJKL') from dual;
+
+select instr('ABCD  EFG HIJK LMNO','D',1) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','D',1) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','D',1,2) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','D',1,4) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','DE',1,2) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','DE',1) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','FG',1) from dual;
+
+select regexp_count('aeineheangurgkaogkrukoaijkagaaohru','a') from dual;
+
+select regexp_count('aeineheangurgkaogkrukoaijkagaaohru','a') as regexcount from dual;
+
+ select current_data from dual;
+
+ select current_date from dual;
+
+select sysdate from dual;
+
+select last_date(sysdate) from dual;
+
+select last_day(sysdate) from dual;
+
+select add_months(sysdate,5) from dual;
+
+select to_char(sysdate,'dd/mm/yyyy') from dual;
+
+select current_timestamp from dual;
+
+select dbtimezone from dual;
+
+select localtimestamp from dual;
+
+create table product(name varchar2(20), price float, qunatity number);
+
+insert into product values('bala',1212.2312,3);
+
+select * from product;
+
+select ABS(-15) as Absolute from DUAL;
+
+select EXP(4) as Value from DUAL;
+
+select CEIL(123.242) from DUAL;
+
+select FLOOR(1212.323) from DUAL;
+
+select POWER(5,2) from DUAL;
+
+select ROUND(121.312) from DUAL;
+
+select ROUND(121.312,0) from DUAL;
+
+select ROUND(121.312,2) from DUAL;
+
+select ROUND(121.312242,4) from DUAL;
+
+select SIGN(-119) from DUAL;
+
+select SIGN(15) from DUAL;
+
+select TRUNC(123.435343) from DUAL;
+
+select TRUNC(123.435343,3) from DUAL;
+
+select SQRT(16) from DUAL;
+
+select ROUND(SQRT(2524)) from DUAL;
+
+select log(10,2) from DUAL;
+
+select cos(40) from dual;----sin,tan,cosican,sec 
+ 
+ 
+ 
+-------------------STRING MANIPLULATION--------------- 
+-----ASCII mchanisam 65 -a 
+ 
+select chr(65) from dual;
+
+create table userdata( 
+first_name varchar2(20), 
+middle_name varchar2(20), 
+city varchar2(40) 
+);
+
+insert into userdata values('bala','krishna','uk');
+
+select * from userdata;
+
+select concat(first_name,middle_name)as fullname from userdata;
+
+select INITCAP('my first tutorial') from dual;
+
+select upper('my first tutorial') from dual;
+
+select lower('my first REREIR') from dual;
+
+select LTRIM('                  my first tutorial             ') from dual;
+
+select rtrim('                  my first tutorial             ') from dual;
+
+select rtrim(LTRIM('                  my first tutorial             ')) as name  from dual;
+
+select trim('                       my first tutorrial            ') from dual;
+
+select replace('bala@gmail.com','gamil','yahoo') from dual;
+
+select substr('AERNEAURARU',3,5) from dual;
+
+select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ',1,5) from dual;
+
+select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ',-1,5) from dual;
+
+select substr('ABCDEFGHIJ  KLMNOPQRSTUVWXYZ',-1,-5) from dual;
+
+select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city, substr(middle_name,1,3) as subname from userdata;
+
+select length('ABCDE    FGHIJKL') from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','D',1) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','D',1,2) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','D',1,4) from dual;
+
+select instr('ABCD  EFG HDIJK LMDNO','FG',1) from dual;
+
+select regexp_count('aeineheangurgkaogkrukoaijkagaaohru','a') as regexcount from dual;
+
+select current_date from dual;
+
+select sysdate from dual;
+
+select last_day(sysdate) from dual;
+
+select to_char(sysdate,'dd/mm/yyyy') from dual;
+
+select add_months(sysdate,5) from dual;
+
+select current_timestamp from dual;
+
+select dbtimezone from dual;
+
+select localtimestamp from dual;
+
+create table product(name varchar2(20), price float, qunatity number);
+
+insert into product values('bala',1212.2312,3);
+
+select * from product;
+
+insert into product values('vivo',1323232.2312,2);
+
+insert into product values('iphone',124242424.2312,4);
+
+insert into product values('realme',12422222.2312,5);
+
+select * from product;
+
+select sum(quantity) from product;
+
+select sum(qunatity) from product;
+
+select count(*) from product;
+

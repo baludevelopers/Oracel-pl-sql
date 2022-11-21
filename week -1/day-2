@@ -1,0 +1,300 @@
+REM   Script: day2---
+REM   day20-----
+
+create table employee1(id number, 
+name varchar2(20), 
+gender varchar2(10), 
+city varchar2(20), 
+constraints pk_employeedetails primary key(id,name) 
+);
+
+create table employee1(id number, 
+name varchar2(20), 
+gender varchar2(10), 
+city varchar2(20), 
+constraints pk_employee1 primary key(id,name) 
+);
+
+drop table employee1;
+
+create table employee1(id number, 
+name varchar2(20), 
+gender varchar2(10), 
+city varchar2(20), 
+constraints pk_employee1 primary key(id,name) 
+);
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+constraints pk_employee1 primary key(id,name) 
+);
+
+drop table employee1;
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+constraints pk_employee1 primary key(id,name) 
+);
+
+drop table employee1;
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+constraints pk_employee1 primary key(id) 
+);
+
+insert into employee1 values(1,'khan','male','uk');
+
+select * from employee1;
+
+insert into employee1 values(2,null,'male','uk');
+
+insert into employee1 values(2,'prrem','male','uk');
+
+select * from employee1;
+
+insert into employee1 values(1,'khan','uk');
+
+insert into employee1(id,'name','city') values(1,'khan','uk');
+
+insert into employee1(id,name,city) values(1,'khan','uk');
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+constraints pk_employee1 primary key(id) 
+);
+
+select * from employee1;
+
+insert into employee1(id,name,city) values(1,'khan','uk');
+
+insert into employee1(id,name,city) values(3,'khan','uk');
+
+select * from employee1;
+
+rename employee1 to employee2
+
+
+select * from employee2;
+
+drop table employee2;
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail) 
+);
+
+select * from employee2;
+
+select * from employee1;
+
+insert into employee1 values(1,'khan','male','uk');
+
+insert into employee1 values(2,'prrem','male','uk');
+
+insert into employee1 values(1,'khan','male','uk','khan@gmail.com');
+
+insert into employee1 values(2,'prrem','male','uk','prrem@gamil.com');
+
+select * from employee1;
+
+alter table employee1 
+add age number;
+
+select * from employee1;
+
+insert into employee1 values(3,'khan','male','uk','khan@gmail.com',10);
+
+insert into employee1 values(4,'prrem','male','uk','prrem@gamil.com',20);
+
+insert into employee1 values(3,'khan','male','uk','kenra@gmail.com',10);
+
+insert into employee1 values(4,'prrem','male','uk','prrem2123@gamil.com',20);
+
+alter table employee1 
+add age number;
+
+select * from employee1;
+
+alter table employee1 
+constraints ck_age check(age>0 and age<40);
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail) 
+constraints ck_employee1_age check(age>0 and age<40);
+
+);
+
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail), 
+constraints ck_employee1_age check(age>0 and age<40) 
+);
+
+drop table employee1;
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail), 
+constraints ck_employee1_age check(age>0 and age<40) 
+);
+
+alter table employee1 
+constraints ck_employee1_age check(age>0 and age<40);
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+age number, 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail), 
+constraints ck_employee1_age check(age>0 and age<40) 
+);
+
+insert into employee1 values(3,'khan','male','uk','kenra@gmail.com',10);
+
+insert into employee1 values(4,'prrem','male','uk','prrem2123@gamil.com',44);
+
+insert into employee1 values(3,'khan','male','uk','kenra@gmail.com',10);
+
+insert into employee1 values(4,'prrem','male','uk','prrem2123@gamil.com',40);
+
+insert into employee1 values(4,'prrem','male','uk','prrem2123@gamil.com',40);
+
+insert into employee1 values(4,'prrem','male','uk','prrem2123@gamil.com',30);
+
+select * from employee1;
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+age number, 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail), 
+constraints ck_employee1_age check(age>0 and age<40), 
+constraints ck_employee1_gender check(gender in('male','female','other') 
+);
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+age number, 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail), 
+constraints ck_employee1_age check(age>0 and age<40), 
+constraints ck_employee1_gender check(gender in('male','female','other')) 
+);
+
+drop table employee1;
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+age number, 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail), 
+constraints ck_employee1_age check(age>0 and age<40), 
+constraints ck_employee1_gender check(gender in('male','female','other')) 
+);
+
+insert into employee1 values(3,'khan','male','uk','kenra@gmail.com',10);
+
+insert into employee1 values(4,'prrem','male','uk','prrem2123@gamil.com',30);
+
+select * from employee1;
+
+insert into employee1 values(5,'prrem','male232','uk','prrem21242423@gamil.com',30);
+
+insert into employee1 values(5,'prrem','male','uk','prrem21242423@gamil.com',30);
+
+select * from employee1;
+
+drop table employee1;
+
+alter table employee1 
+add constraints uq_employee1_gmail unique(gamil);
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+age number, 
+constraints pk_employee1 primary key(id), 
+constraints uq_gmail unique(gmail), 
+constraints ck_employee1_age check(age>0 and age<40), 
+constraints ck_employee1_gender check(gender in('male','female','other')) 
+);
+
+alter table employee1 
+add constraints uq_employee1_gmail unique(gamil);
+
+alter table employee1 
+add constraints uq_employee1_gmail unique(gmail);
+
+rop table employee1;
+
+
+drop table employee1;
+
+create table employee1(id number, 
+name varchar2(20) not null, 
+gender varchar2(10) default 'np', 
+city varchar2(20), 
+gmail varchar(40), 
+age number, 
+constraints pk_employee1 primary key(id), 
+constraints ck_employee1_age check(age>0 and age<40), 
+constraints ck_employee1_gender check(gender in('male','female','other')) 
+);
+
+alter table employee1 
+add constraints uq_employee1_gmail unique(gmail);
+
+insert into employee1 values(5,'prrem','male','uk','prrem21242423@gamil.com',30);
+
+insert into employee1 values(6,'prrem','male','uk','prrem21242423@gamil.com',30);
+
+insert into employee1 values(6,'prrem','male','uk','prrem21232242423@gamil.com',30);
+
+alter table employee1 
+add constraints uq_employee1_gmail_name unique(gmail,name);
+
+insert into employee1 values(8,'prrem','male','uk','prrem2124ere2423@gamil.com',30);
+
+insert into employee1 values(7,'prrem','male','uk','prrem2123ww2242423@gamil.com',30);
+

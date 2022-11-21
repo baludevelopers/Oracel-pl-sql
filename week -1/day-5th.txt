@@ -1,0 +1,90 @@
+
+
+select  substr('john@gmail.com',-6,6) from dual;
+
+
+nvl(value, 'new value');
+select nvl(null,5) from dual;
+
+
+
+create table employee(name varchar2(20), gender varchar2(30));
+insert into employee values('jhon','m');
+insert into employee values(null,'m');
+insert into employee values('kiran',null);
+
+select * from employee;
+
+
+select nvl(name,'no name'), from employee;
+select nvl(name,'no name'), nvl(gender,'gender is not present') from employee;
+
+
+-----------------------Normalization----------------------
+
+----1NF--------
+create table Employeedata(id number primary key, name varchar2(50), gender varchar2(10), departements varchar2(30), phone_no varchar2(50));
+
+insert into Employeedata values(1,'bala','male','hr','111111111,72626282782');
+insert into Employeedata values(2,'sala','female','it','111111111,72626282782');
+insert into Employeedata values(3,'anji','male','admin','111111111,72626282782');
+insert into Employeedata values(4,'asha','female','hr','111111111,72626282782');
+insert into Employeedata values(5,'srithi','male','admin','111111111,72626282782');
+insert into Employeedata values(6,'madhavi','female','hr','111111111,72626282782');
+
+
+select * from Employeedata;
+
+drop table Employeedata;
+
+
+--------------2nd nf
+
+create table department(
+id number primary key,
+name varchar2(30));
+
+insert into department values(1,'hr');
+insert into department values(2,'it');
+insert into department values(3,'admin');
+
+--------3rd nf
+
+
+---------------------subquery-------------------
+
+create table product(id number primary key, name varchar2(30), quantity float, price float);
+
+insert into product values(1,'iphone',11,2212313);
+insert into product values(2,'ipad',11,2212313);
+insert into product values(3,'vevo',11,2212313);
+insert into product values(4,'max',11,2212313);
+insert into product values(5,'cel',11,2212313);
+
+select * from product order by price desc fetch next 1 rows only;
+
+
+
+select * from product;
+select max(price) from product;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
