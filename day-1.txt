@@ -1,0 +1,98 @@
+----joins in sql---
+--pl/sql -----
+
+If if we want to retrieve the data from more than one table that are joined with each other with the help of foreign key relationship.
+1.inner join - returns  rows common between two tables.
+2.left join - returns common rows b/w tow tables + non mathcing row from left table
+3.right join - returns common rows b/n tables + non mathching row from right table
+4.full join - rows common + rows from left + rows from right.
+5.cross join - 
+
+create table department(mst_dept_id number primary key, dep_name varchar2(20));
+
+insert into department values(1,'hr');
+insert into department values(2,'admin');
+insert into department values(3,'payroll');
+insert into department values(4,'hr');
+
+
+
+create table employee(mst_emp_id number primary key, emp_name varchar2(20), gender varchar2(10),salary float,
+dept_id number,
+constraints fk_employee_department foreign key(dept_id) references department(mst_dept_id));
+
+
+insert into employee values(1,'john','m',30000,1);
+insert into employee values(2,'nilima','f',49990,2);
+insert into employee values(3,'bala','m',40000,2);
+insert into employee values(4,'krishna','m',60000,2);
+insert into employee values(5,'prasad','m',70000,3);
+insert into employee values(6,'prasad','m',70000,null);
+
+
+select * from employee;
+select * from department;
+
+
+--syntax
+select [coumn list]
+from [table name-1]
+join [table name-2]
+on condition
+
+---------inner join----
+--all the coloumns
+select * from employee inner join department on department.mst_dept_id=employee.dept_id;
+--or
+select * from employee join department on department.mst_dept_id=employee.dept_id;
+
+
+---some perticular coloumns
+select emp_name,gender,salary,dep_name from employee inner join department on department.mst_dept_id=employee.dept_id;
+
+
+-------right join ( common rows + non matching row from right table)----
+--syntax--
+select [coumn list]
+from [table name-1] - left table
+join [table name-2] - right table
+on condition
+
+
+select * from employee;
+select * from department;
+
+select * from employee right join department on department.mst_dept_id=employee.dept_id;
+
+--inter change table names:-
+select * from department right join employee on department.mst_dept_id=employee.dept_id;
+
+
+
+----left join
+
+--syntax--
+select [coumn list]
+from [table name-1] - left table
+join [table name-2] - right table
+on condition
+
+select * from employee left join department on department.mst_dept_id=employee.dept_id;
+
+------fulll join-----( common rows + non matching row from right table + non matching row from right table)
+
+select * from employee full join department on department.mst_dept_id=employee.dept_id;
+
+
+------cross join (each row of the employee * each row of the department)----
+select * from employee cross join department 
+
+
+
+
+
+
+
+
+
+
