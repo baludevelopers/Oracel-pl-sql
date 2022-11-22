@@ -1,308 +1,281 @@
-REM   Script: day -4
-REM   day -4
 
-SEELCT * FROM DUAL;
-----fucntionname(parameters(s))
----absolute function
-
-select ABS(-15) as absolute from DUAL;
-
-select ABS(-15) as Absolute from DUAL;
-
---exp
-select EXP(4) as Value from DUAL;
-
-select EXP(4) as Value from DUAL;
-----CIEL Retrun the smallest integer value that is graer than or equal to value 'n'
-
-select CEIL(123.242) as value from DUAL;
-
-select CEIL(123.242) from DUAL;
-
----FOOR return the largest number that is less than or equal to value n
-
-select FLOOR(1212.323) from DUAL;
-
----POWER 
-select POWER(5,2) from DUAL;
-
-select ROUND(121.312) from DUAL;
-
-select ROUND(121.312,0) from DUAL;
-
-select ROUND(121.312,2) from DUAL;
-
-select ROUND(121.312242,4) from DUAL;
-
-select SIGN(-15) from DUAL;
-
-select SIGN(10) from DAUL;
-
-select SIGN(10) from DUAL;
-
-select SIGN(15) from DUAL;
-
-select SIGN(-119) from DUAL;
-
-select SIGN(15) from DUAL;
-
-select TRUNC(123.435343) from DUAL;
-
-select TRUNC(123.435343,3) from DUAL;
-
-selet SQRT(16) from DUAL;
+----functionname(parameter(s));
+select * from dual;
 
 
-select SQRT(16) from DUAL;
+------------functions in oracle------------
 
-select SQRT(256) from DUAL;
+---1.absolute function
 
-select ROUND(SQRT(256)) from DUAL;
+select abs(-5)  from dual;
+select abs(-5)as absolute from dual;
 
-select ROUND(SQRT(2524)) from DUAL;
+-----2.exponantional function
 
-select CEIL(123.242) from DUAL;
+select exp(4) from dual;
 
-select FLOOR(1212.323) from DUAL;
+select exp(5)as exponantional from dual;
 
-select CEIL(123.242) from DUAL;
+-----3.CEIL - retruns the smallest integer value that is greater than or equal to value 'n'
 
-select FLOOR(1212.323) from DUAL;
+select ceil(23.2323) from dual;
 
-select POWER(5,2) as powervalue from DUAL;
+select ceil(23.2323)as ceil from dual;
 
-select log(10,2) from DUAL;
+----4.FLOOR -retrun the largest number value that is less then or equal to value 'n'
+select floor(12323.2423) from dual;
 
-select cos(40) from dual;
+
+select floor(232232.23232)as floor from dual;
+
+
+-----5.POWER 
+
+select power(12,4) from dual;
+select power(12,4)as power from dual;
+
+
+---6.ROUND FUNCTION - returns the value rounded to integer value placed in the right hand side.
+
+select round(123.923123) from dual;
+
+
+select round(123.923123)as round from dual;
+
+select round(123.923123,0) from dual;
+
+select round(123.973123,2) from dual;
+
+----7.SIGN FUNCTION
+SELECT SIGN(-15) FROM DUAL;
+
+SELECT SIGN(15) from dual;
+
+----8. Truncate
+
+select trunc(122123.9413) from dual;
+
+
+select trunc(122123.9413,2) from dual;
+
+
+----9.SQRT
+
+select sqrt(16) from dual;
+
+
+-----perform two functions
+
+select sqrt(round(19.3223)) from dual
+
+
+
+
+select log(10,3) from dual;
+
+
+select cos(4) from dual;-----sin,sec----ect....,
+
+----------------------string manipulation--------------------------
+
+------ASCII machanisam ----65 characters we have
 
 select chr(65) from dual;
 
-create table userdata( 
-first_name varchar2(20), 
-middle_name varchar2(20), 
-city varchar2(40) 
-);
+select chr(69) from dual;
+
+
+create table userdata(firstname varchar2(20),middlename varchar2(20),city varchar2(30));
 
 insert into userdata values('bala','krishna','uk');
+insert into userdata values('hari','krishna','us');
+insert into userdata values('rama','krishna','au');
+insert into userdata values('murali','krishna','uk');
+
+----concat
+select concat(firstname,middlename)as full_name from userdata;
 
 select * from userdata;
 
-select concat(first_name,middle_name)as fullname from userdata;
 
-select INITCAP('my first tutorial') from dual;
+-----INITCAP
+---every first charecter coverted into upper case
+select initcap('my first tutorial') from dual;
 
-select upper('my first tutorial') from dual;
 
-select lower('my first REREIR') from dual;
+-----LOWER CASE
+---every charecter coverted into lower case case
+select lower('my First TutorIal') from dual;
 
-select LTRIM('                  my first tutorial             ') from dual;
 
-select rtrim('                  my first tutorial             ') from dual;
 
-select rtrim(LTRIM('                  my first tutorial             ')) as name  from dual;
+-----uppper CASE
+---every charecter coverted into upperr case case
+select upper('my First TutorIal') from dual;
 
-select trim('                       my first tutorrial            ') from dual;
 
-select replace('bala@gmail.com','gamil','yahoo') from dual;
+-----LTRIM--LEFT TRIM
+--this will remove space left side
+select ltrim('      my First TutorIal           ') from dual;
 
-select substr('AERNEAURARU',3,5) from dual;
 
-select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ',1,5) from dual;
 
-select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ',-1,5) from dual;
+-----rTRIM--right TRIM
 
-select substr('ABCDEFGHIJ  KLMNOPQRSTUVWXYZ',1,-5) from dual;
+--this will remove space risht side
+select rtrim('      my First TutorIal           ') from dual;
 
-select substr('ABCDEFGHIJ  KLMNOPQRSTUVWXYZ',-1,-5) from dual;
+-----both sides
 
-select upper(first_name), lower(middle_name) , replace(city,'usa','uk') from userdata;
+select rtrim(ltrim('      my First TutorIal           ')) from dual;
+---or
 
-select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') from userdata;
+select trim('      my First TutorIal           ') from dual;
 
-select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city from userdata;
+
+------replace
+---- 1st parameter --- value in which you want to replace something
+----2nd parameter -----value you want to replace
+------3rd --the new value that you want to put
+
+select replace('gbalakrishna370@gmail.com','370','3704') from dual;
+
+
+
+-------SUBSTR
+----1st- the value from wich we want the substring
+----2nd - the start position from where you want to start the substring extraction(start position)
+        ---positive numnber - it will start from first position
+        ----nagative number - It will start from the end of string.
+-----3rd  the end position where we want to stop. (end position).
+
+select substr('balakrishna',3,7) from dual;
+select substr('balakrishna',1,4) from dual;
+
+select substr('bala  krishna',1,7) from dual;
+
+select substr('bala  krishna',-1,3) from dual;
+
+select substr('bala  krishna',-3,2) from dual;
+
+select initcap(firstname) from userdata;
+
+
+select upper(firstname),upper(middlename) from userdata;
+
+select upper(firstname),upper(middlename),replace(city,'us','japan') from userdata;
+
+select upper(firstname)as firstname,upper(middlename)as middlename,replace(city,'us','japan')as city from userdata;
 
 select * from userdata;
 
-select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city substr(middle_name,1,3) as subname from userdata;
 
-select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city substr(middle_name,1,3) as subname from userdata;
+select upper(firstname)as firstname,upper(middlename)as middlename,replace(city,'us','japan')as city, substr(middlename,1,3)as substring from userdata;
 
-select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city, substr(middle_name,1,3) as subname from userdata;
 
-select * from userdata;
+----length fucntion
+select length('baalkrishna') from dual;
 
-select length('ABCDEFGHIJKL') from dual;
 
-select length('ABCDE    FGHIJKL') from dual;
+---INSTR FUNCTION
+---1st - the value in which you will be searching for the char or word
+---2nd - the char or word that you want to search inside the string
+------3rd - start position to look out for the search
+---4th - end position for the search
 
-select instr('ABCD  EFG HIJK LMNO','D',1) from dual;
+select instr('balakrishna','a',1,3) from dual;
 
-select instr('ABCD  EFG HDIJK LMDNO','D',1) from dual;
+select instr('balakrishna','a',1) from dual;
 
-select instr('ABCD  EFG HDIJK LMDNO','D',1,2) from dual;
 
-select instr('ABCD  EFG HDIJK LMDNO','D',1,4) from dual;
+select instr('balakrishna','al',1) from dual;
 
-select instr('ABCD  EFG HDIJK LMDNO','DE',1,2) from dual;
 
-select instr('ABCD  EFG HDIJK LMDNO','DE',1) from dual;
+select instr('my first tutorial','tuutorial',1) from dual;
 
-select instr('ABCD  EFG HDIJK LMDNO','FG',1) from dual;
 
-select regexp_count('aeineheangurgkaogkrukoaijkagaaohru','a') from dual;
+-----regexp_count
+select regexp_count('teteejfthenef  efefefn eifje    e eje jfef eoeojfafoaafaaoa','a')from dual;
 
-select regexp_count('aeineheangurgkaogkrukoaijkagaaohru','a') as regexcount from dual;
 
- select current_data from dual;
 
- select current_date from dual;
+select regexp_count('teteejfthenef  efefefn eifje    e eje jfef eoeojfafoaafaaoa','ef')from dual;
 
-select sysdate from dual;
 
-select last_date(sysdate) from dual;
 
-select last_day(sysdate) from dual;
+------------------date functions---------------
 
-select add_months(sysdate,5) from dual;
-
-select to_char(sysdate,'dd/mm/yyyy') from dual;
-
-select current_timestamp from dual;
-
-select dbtimezone from dual;
-
-select localtimestamp from dual;
-
-create table product(name varchar2(20), price float, qunatity number);
-
-insert into product values('bala',1212.2312,3);
-
-select * from product;
-
-select ABS(-15) as Absolute from DUAL;
-
-select EXP(4) as Value from DUAL;
-
-select CEIL(123.242) from DUAL;
-
-select FLOOR(1212.323) from DUAL;
-
-select POWER(5,2) from DUAL;
-
-select ROUND(121.312) from DUAL;
-
-select ROUND(121.312,0) from DUAL;
-
-select ROUND(121.312,2) from DUAL;
-
-select ROUND(121.312242,4) from DUAL;
-
-select SIGN(-119) from DUAL;
-
-select SIGN(15) from DUAL;
-
-select TRUNC(123.435343) from DUAL;
-
-select TRUNC(123.435343,3) from DUAL;
-
-select SQRT(16) from DUAL;
-
-select ROUND(SQRT(2524)) from DUAL;
-
-select log(10,2) from DUAL;
-
-select cos(40) from dual;----sin,tan,cosican,sec 
- 
- 
- 
--------------------STRING MANIPLULATION--------------- 
------ASCII mchanisam 65 -a 
- 
-select chr(65) from dual;
-
-create table userdata( 
-first_name varchar2(20), 
-middle_name varchar2(20), 
-city varchar2(40) 
-);
-
-insert into userdata values('bala','krishna','uk');
-
-select * from userdata;
-
-select concat(first_name,middle_name)as fullname from userdata;
-
-select INITCAP('my first tutorial') from dual;
-
-select upper('my first tutorial') from dual;
-
-select lower('my first REREIR') from dual;
-
-select LTRIM('                  my first tutorial             ') from dual;
-
-select rtrim('                  my first tutorial             ') from dual;
-
-select rtrim(LTRIM('                  my first tutorial             ')) as name  from dual;
-
-select trim('                       my first tutorrial            ') from dual;
-
-select replace('bala@gmail.com','gamil','yahoo') from dual;
-
-select substr('AERNEAURARU',3,5) from dual;
-
-select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ',1,5) from dual;
-
-select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ',-1,5) from dual;
-
-select substr('ABCDEFGHIJ  KLMNOPQRSTUVWXYZ',-1,-5) from dual;
-
-select upper(first_name)as firstname, lower(middle_name) as middlename , replace(city,'usa','uk') as city, substr(middle_name,1,3) as subname from userdata;
-
-select length('ABCDE    FGHIJKL') from dual;
-
-select instr('ABCD  EFG HDIJK LMDNO','D',1) from dual;
-
-select instr('ABCD  EFG HDIJK LMDNO','D',1,2) from dual;
-
-select instr('ABCD  EFG HDIJK LMDNO','D',1,4) from dual;
-
-select instr('ABCD  EFG HDIJK LMDNO','FG',1) from dual;
-
-select regexp_count('aeineheangurgkaogkrukoaijkagaaohru','a') as regexcount from dual;
-
+----current date
 select current_date from dual;
 
-select sysdate from dual;
+--system date
+select SYSDATE from dual;
 
+----last day of the month
 select last_day(sysdate) from dual;
+
+
+select add_months(sysdate,5) from dual
+
+
+select to_char(sysdate,'dd/mon/yyyy') from dual;
+
 
 select to_char(sysdate,'dd/mm/yyyy') from dual;
 
-select add_months(sysdate,5) from dual;
 
 select current_timestamp from dual;
 
-select dbtimezone from dual;
+
+select DBTIMEZONE from dual;
 
 select localtimestamp from dual;
 
-create table product(name varchar2(20), price float, qunatity number);
 
-insert into product values('bala',1212.2312,3);
+---------------------------
+
+create table product(name varchar2(40),price float,quantity number);
+insert into product values('apple',100,4);
+insert into product values('orenges',150,20);
+insert into product values('magoes',10,40);
+insert into product values('banana',190,20);
+insert into product values('piapple',110,47);
+
 
 select * from product;
 
-insert into product values('vivo',1323232.2312,2);
+select sum(quantity)as sum_quantity from product;
 
-insert into product values('iphone',124242424.2312,4);
+select max(price) from product;
 
-insert into product values('realme',12422222.2312,5);
+select min(price) from product;
 
-select * from product;
+select avg(price) from product;
 
-select sum(quantity) from product;
 
-select sum(qunatity) from product;
+
+drop table product;
 
 select count(*) from product;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
