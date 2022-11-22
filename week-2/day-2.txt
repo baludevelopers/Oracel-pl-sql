@@ -103,8 +103,8 @@ create table department1(mst_dept_id number primary key,name varchar2(30), dep_n
 
 insert into department1 values(1,'bala','hr','male',20000);
 insert into department1 values(2,'krishna','admin','femal',30000);
-insert into department1 values(3,'jaya','payroll''femal',34500);
-insert into department1 values(4,'lakshman','hr''male',340000);
+insert into department1 values(3,'jaya','payroll','femal',34500);
+insert into department1 values(4,'lakshman','hr''male',340000');
 insert into department1 values(5,'prem','lab','female',340000);
 insert into department1 values(6,'kumar','testing','female',340000);
 insert into department1 values(7,'anvesh','hr','female',348000);
@@ -153,6 +153,51 @@ select distinct name, nth_value(salary,1) over(partition by dep_name order by sa
 
 
 select distinct name, nth_value(salary,3) over(partition by dep_name order by salary asc)as dept_rank from department1;
+
+
+
+--------------------------lead function--------------------------------
+
+create table department1(mst_dept_id number primary key,name varchar2(30), dep_name varchar2(20),gender varchar2(10),salary float,reg_date date);
+
+insert into department1 values(1,'bala','hr','male',20000,'01-nov-2022');
+insert into department1 values(2,'krishna','admin','femal',30000,'08-nov-2022');
+insert into department1 values(3,'jaya','payroll','femal',34500,'17-nov-2022');
+insert into department1 values(4,'lakshman','hr''male',340000,'01-nov-2022');
+insert into department1 values(5,'prem','lab','female',340000,'02-nov-2022');
+insert into department1 values(6,'kumar','testing','female',340000,'03-nov-2022');
+insert into department1 values(7,'anvesh','hr','female',348000,'05-nov-2022');
+insert into department1 values(8,'siva','developer','female',340000,'07-nov-2022');
+
+select * from department1;
+
+select name,dep_name,gender,salary,reg_date, lead(reg_date,1) over(order by reg_date asc)as next_reg_date from department1;
+
+
+select name,dep_name,gender,salary,reg_date, lead(reg_date,2) over(order by reg_date asc)as next_reg_date from department1;
+
+select name,dep_name,gender,salary,reg_date, lead(salary,1) over(order by salary asc)as next_salary from department1;
+
+
+---reverse direction
+
+select name,dep_name,gender,salary,reg_date, lag(reg_date,2) over(order by reg_date asc)as previous_reg_date from department1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
