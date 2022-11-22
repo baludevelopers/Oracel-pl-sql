@@ -1,0 +1,161 @@
+-----sequnces----
+
+create sequence emp_sequence;
+minvalue 1
+maxvalue 10
+start with 1
+cache 10
+cycle;
+
+
+
+alter sequence emp_sequence
+maxvalue 15
+
+alter sequence emp_sequence
+maxvalue 40
+
+
+alter sequence emp_sequence
+increment by 3;
+
+
+alter sequence emp_sequence
+cache 5
+cycle;
+
+select emp_sequence.nextval from dual;
+
+
+
+create sequence emp_sequence1;
+minvalue 1
+start with 1
+increment by 1;
+
+
+select emp_sequence1.nextval from dual;
+
+
+create table department(mst_dept_id number primary key, dep_name varchar2(20));
+
+insert into department values(1,'hr');
+insert into department values(2,'admin');
+insert into department values(3,'payroll');
+insert into department values(4,'hr');
+
+
+insert into department values(emp_sequence1.nextvalu,'mary');
+select * from department;
+
+-------synonym---
+create or replace synonym department_deatils
+for department;
+
+
+select * from department_deatils;
+
+-------------analytical fnction--------------
+
+
+
+create table department1(mst_dept_id number primary key, dep_name varchar2(20),gender varchar2(10),salary float);
+
+insert into department1 values(1,'hr','male',20000);
+insert into department1 values(2,'admin','femal',30000);
+insert into department1 values(3,'payroll''femal',34500);
+insert into department1 values(4,'hr''male',340000);
+insert into department1 values(5,'hr','female',340000);
+insert into department1 values(6,'hr','female',340000);
+insert into department1 values(7,'hr','female',348000);
+insert into department1 values(8,'hr','female',340000);
+
+
+
+select * from department1;
+
+
+select salary from department1;
+
+select DISTICT salary from department1;
+
+
+select first_value(salary) over(order by salary desc) from department1;
+
+
+select distinct first_value(salary) over(order by salary desc) from department1;
+
+
+select distinct first_value(salary) over(order by salary asc) from department1;
+
+
+select last_value(salary) over(order by salary desc) from department1;
+
+
+
+-------------rank function-------------
+
+
+
+
+
+create table department1(mst_dept_id number primary key,name varchar2(30), dep_name varchar2(20),gender varchar2(10),salary float);
+
+insert into department1 values(1,'bala','hr','male',20000);
+insert into department1 values(2,'krishna','admin','femal',30000);
+insert into department1 values(3,'jaya','payroll''femal',34500);
+insert into department1 values(4,'lakshman','hr''male',340000);
+insert into department1 values(5,'prem','lab','female',340000);
+insert into department1 values(6,'kumar','testing','female',340000);
+insert into department1 values(7,'anvesh','hr','female',348000);
+insert into department1 values(8,'siva','developer','female',340000);
+
+drop table department1;
+
+
+select mst_dept_id,dep_name,gender,salary,rank() over(order by salary asc) from department1;
+
+
+select mst_dept_id,dep_name,gender,salary,rank() over(order by name asc) from department1;
+
+
+select mst_dept_id,name,dep_name,gender,salary,rank() over(partition by name order by salary asc) from department1;
+
+
+select mst_dept_id,name,dep_name,gender,salary,rank() over(partition by salary order by salary asc) from department1;
+
+
+
+
+
+----------------dense rank----
+select mst_dept_id,dep_name,gender,salary,rank() over(order by salary asc) from department1;
+
+select mst_dept_id,dep_name,gender,salary,dense_rank() over(order by salary asc) from department1;
+
+
+select mst_dept_id,dep_name,gender,salary,dense_rank() over(order by name asc) from department1;
+
+
+select salary from(
+select mst_dept_id,name,dep_name,gender,salary,dense_rank() over(partition by salary order by salary asc)as dep_rank from department1;
+) where emp_rank=1
+
+------------nth value--------------------
+
+
+select mst_dept_id,name,dep_name,gender,salary,nth_value(salary,1) over(partition by dep_name order by salary asc)as dept_rank from department1;
+
+
+
+select distinct name, nth_value(salary,1) over(partition by dep_name order by salary asc)as dept_rank from department1;
+
+
+
+select distinct name, nth_value(salary,3) over(partition by dep_name order by salary asc)as dept_rank from department1;
+
+
+
+
+
+
