@@ -6,158 +6,190 @@ salary float,
 department varchar2(20)
 );
 
+------insert comammnd--------
+insert into Employee values(1,'bala','male',40000,'hr','uk','bala@gamil.com');
+insert into Employee values(2,'krishna','male',40000,'hr','austrial','krishna@gmail.com');
+insert into Employee values(3,'asha','female',2323200,'it','canda','asha@gmail.com');
+insert into Employee values(4,'keerthi','female',60000,'it','us','keerthi@gmail.com');
+insert into Employee values(5,'ramya','female',32300,'hr','germany','ramya@yahoo.com');
+insert into Employee values(6,'gayatri','female',22220,'it','canada','gayatri@yahoo.com');
 
------alter commmand
+insert into Employee values(7,'radha','female',23400,'hr','uk','radha@yahoo.com');
+
+
 alter table Employee add city varchar(20);
 alter table Employee 
 add constraints pk_Employee primary key(id);
 alter table employee add email varchar2(30);
+drop table Employee
 
-
-------insert comammnd--------
-insert into Employee values(1,'bala','male',40000,'ti','uk','bala@gamil.com');
-insert into Employee values(2,'krishna','male',40000,'hr','austrial','krishna@gmail.com');
-insert into Employee values(3,'asha','female',2323200,'it','canda','asha@gmail.com');
-insert into Employee values(4,'keerthi','female',60000,'planning','us','keerthi@gmail.com');
-insert into Employee values(5,'ramya','female',32300,'testing','germany','ramya@yahoo.com');
-insert into Employee values(6,'gayatri','female',22220,'testing','canada','gayatri@yahoo.com');
-
-insert into Employee values(7,'radha','female',23400,'testing','uk','radha@yahoo.com');
-
-
+--------------where clause----------
 
 select * from Employee;
+
+----we want data some perticular postion
+select * from Employee where id=5;
+
+
+select * from Employee where department='hr';
+
+select * from Employee where city='us';
+
+
+select * from Employee where salary>70000;
+
+
+select * from Employee where department != 'hr';
+or
+select * from Employee where department <> 'hr';
+
+
+
+---IN - operator ---using this to get multipule records
+
+select * from Employee where id in (1,3,100);
+
+select * from Employee where city in ('us','uk');
+
+
+----------AND , OR Operator
+----and ----both conditions or true
+select * from Employee where department='hr' and name in('krishna');
+select * from Employee where department='hr' and name in('krishna','bala');
+
+-----Or ---onely one conditions need to be true
+select * from Employee where department='hr' or name in('krishna','bala');
+
+
+-----(LIKE %,_)
+
+SELECT * FROM Employee
+
+----% - the percentage sysbol is what is number of charecters before and after it will agnore it.
+
+select * from Employee where email like '%gmail%';
+
+
+select * from Employee where email like '%gmail';
+
+select * from Employee where email like '%yahoo%';
+
+---------- (_)
+--the underscore take the charecters
+select * from Employee where email like '_____gmail%';
+
+
+select * from Employee where email like '%gmail____';
+
+
+select * from Employee where name like '%r%';
+
+
+----between operator
+
+select * from Employee where id between 1 and 5;
+
+
+---------update usin where clause
+--by using the where clause update ,delete , insert the date
+----that means to filter the data using where clause
+
+update Employee set name='abc' where id in (1,2,3);
+
+
+delete from Employee where name in('keerthi','ramya');
+
+
+--------------Order by clause
+----two options --- asc(default), desc
+
+select * from Employee order by id asc;
+
+select * from Employee order by id desc;
+
+
+select * from Employee order by name asc;
+
+select * from Employee order by salary asc;
+
+
+select * from Employee order by salary asc, name desc;
+
+
+------------------------group by --------------
+
+create table product(id number primary key,name varchar2(20),quantity number,price float,city varchar2(30));
+
+insert into product values(1,'iphoes',30,232399,'uk');
+insert into product values(2,'apples',38,49999,'us');
+insert into product values(3,'houses',16,499999,'uk');
+insert into product values(4,'laptops',27,499,'jarmany');
+insert into product values(5,'batterys',20,4999,'us');
+insert into product values(6,'chargers',30,49999,'loudon');
+
+
+select sum(quantity)as total_quantity,sum(price)as total_price,city from product group by city
+
+-----when using having clause first grouping the data after that filtering the data
+--having use after the group by clause
+select sum(quantity)as total_quantity,sum(price)as total_price,city 
+from product group by city 
+having city='us';
+
+
+----where clause using first filtering the data after that grouping the data
+--where clause use before the group clause
+select sum(quantity)as total_quantity,sum(price)as total_price,city
+from product where city='us'
+group by city
+
 
 drop table Employee;
 
 
---------------where clause------------
-
-select * from Employee where id=5;
-
-select * from Employee where gender='female';
-
-
-select * from Employee where city='us';
-
-select * from Employee where salary<40000;
-
-select * from Employee where gender!='female';
-
-
-select * from Employee where id in (1,2,3);
-
-select * from Employee where department in ('hr','ti','it');
-
--------------AND , OR OPERATOR--------------
-
-
-select * from Employee where department='testing' and name in('gayatri','radha');
-
-
-
-select * from Employee where (department='testing' or name in('gayatri','radha','bala')) and salary=40000;
-
--------------like %,_  -----------
-
-select * from Employee where email like '%gmail%';
-
-select * from Employee where email like '%yahoo%';
-
-
-select * from Employee where email like '_____gmail%';
-
-
-select * from Employee where name like 'b%';
-
-
---------between operator-----
-select * from Employee where id between 1 and 3;
-
-------------------Order by= asc(default), desc -----------
-
-select * from Employee order by id desc;
-
-select * from Employee order by name asc;
-
-select * from Employee order by name desc;
-
-select * from Employee order by salary asc;
-
-select * from Employee order by salary desc,name desc;
-
--------------group by----------
-
-create table product(id number primary key, name varchar2(20), qunatity number, price float,city varchar2(30));
-
-
-insert into product values(1,'iphone11',2,200000,'uk');
-insert into product values(2,'iphone11',6,200000,'uk');
-insert into product values(3,'iphone12',5,9990000,'us');
-insert into product values(4,'iphone11',2,200000,'us');
-insert into product values(5,'iphone12',1,400000,'uk');
-
+drop table product;
 select * from product;
 
-drop table product;
 
 
-select sum(qunatity) as total,sum(price)as totalprice, city from product group by city having city='uk';
+create table department_details(dept_id number primary key,dept_name varchar2(20));
+
+insert into department_details values(1,'hr');
+insert into department_details values(2,'it');
 
 
-select sum(qunatity) as total,sum(price)as totalprice, city from product where city='uk' group by city;
 
--------------
 
 create table Employee(
-id number,
+id number primary key,
 name varchar2(20),
 gender varchar2(10),
 salary float,
-department varchar2(20)
+city varchar2(30),
+emp_email varchar(40),
+department_details_id number
 );
 
-create table department(dept_id number primary key, dep_name varchar2(20));
-insert into department values(1,'hr');
-insert into department values(2,'admin');
-insert into department values(3,'it');
-insert into department values(4,'hr');
+------insert comammnd--------
+insert into Employee values(1,'bala','male',40000,'uk','bala@gamil.com',1);
+insert into Employee values(2,'krishna','male',40000,'austrial','krishna@gmail.com',2);
+insert into Employee values(3,'asha','female',2323200,'canda','asha@gmail.com',1);
+insert into Employee values(4,'keerthi','female',60000,'us','keerthi@gmail.com',2);
+insert into Employee values(5,'ramya','female',32300,'germany','ramya@yahoo.com',1);
+insert into Employee values(6,'gayatri','female',22220,'canada','gayatri@yahoo.com',1);
 
+insert into Employee values(7,'radha','female',23400,'uk','radha@yahoo.com',2);
+
+
+drop table Employee
+
+
+
+select * from department_details;
 select * from Employee;
-select * from department;
 
-
-create table EmployeeDetails(id number primary key, name varchar2(30),gender varchar(10),city varchar2(50),
-department_id number not null,
-constraint fk_depatment_dept_id foreign key (department_id) references department (dept_id)
-);
-
-select * from EmployeeDetails;
-
-
-insert into EmployeeDetails values(1,'jhone','male','us',1);
-
-insert into EmployeeDetails values(2,'bala','male','us',2);
-
-insert into EmployeeDetails values(3,'krishna','male','us',2);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+alter table Employee
+add constraints fk_Employee_department_details foreign key(department_details_id) references department_details(dept_id);
 
 
 
