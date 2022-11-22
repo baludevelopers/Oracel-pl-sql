@@ -2,22 +2,28 @@ REM   Script: day -4
 REM   day -4
 
 SEELCT * FROM DUAL;
+----fucntionname(parameters(s))
+---absolute function
 
-
-select ABS(-15) from DUAL;
+select ABS(-15) as absolute from DUAL;
 
 select ABS(-15) as Absolute from DUAL;
 
+--exp
 select EXP(4) as Value from DUAL;
 
-select CEIL(123.242) from DUAL;
+select EXP(4) as Value from DUAL;
+----CIEL Retrun the smallest integer value that is graer than or equal to value 'n'
+
+select CEIL(123.242) as value from DUAL;
 
 select CEIL(123.242) from DUAL;
+
+---FOOR return the largest number that is less than or equal to value n
 
 select FLOOR(1212.323) from DUAL;
 
-select EXP(4) as Value from DUAL;
-
+---POWER 
 select POWER(5,2) from DUAL;
 
 select ROUND(121.312) from DUAL;
