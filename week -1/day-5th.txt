@@ -20,39 +20,161 @@ select * from Employeedata;
 drop table Employeedata;
 
 
--------------2nf-------------
-drop table Employeedata;
+---------------------2nf---------------------
 
-
---------------2nd nf
-
-create table department(
-id number primary key,
-name varchar2(30));
+create table department(dept_id number primary key,dept_name varchar2(20));
 
 insert into department values(1,'hr');
 insert into department values(2,'it');
 insert into department values(3,'admin');
 
---------3rd nf
+
+create table Employee(id number primary key, name varchar2(50), gender varchar2(10), phone_no varchar2(50),department_id number not null);
 
 
----------------------subquery-------------------
+insert into Employee values(1,'bala','male','111111111,72626282782',1);
+insert into Employee values(2,'sala','female','111111111,72626282782',2);
+insert into Employee values(3,'anji','male','111111111,72626282782',1);
+insert into Employee values(4,'asha','female','111111111,72626282782',3);
+insert into Employee values(5,'srithi','male','111111111,72626282782'2);
+insert into Employee values(6,'madhavi','female','111111111,72626282782',1);
 
-create table product(id number primary key, name varchar2(30), quantity float, price float);
+select * from department;
+select * from Employee;
 
-insert into product values(1,'iphone',11,2212313);
-insert into product values(2,'ipad',11,2212313);
-insert into product values(3,'vevo',11,2212313);
-insert into product values(4,'max',11,2212313);
-insert into product values(5,'cel',11,2212313);
+drop table Employee;
 
-select * from product order by price desc fetch next 1 rows only;
+
+
+alter table Employee
+add constraints fk_Employee_department foreign key(department_id) references department(dept_id);
+
+
+
+
+update employee set name='priya' where id='1';
+
+
+update employee set name='mr.bala' where id='1';
+update employee set name='mrs.sala' where id='2';
+update employee set name='mr.anji' where id='3';
+update employee set name='mrs.asha' where id='4';
+update employee set name='mr.srithi' where id='5';
+
+
+create table title(id number primary key,name varchar2(10));
+
+insert into title values(1,'mr');
+insert into title values(2,'mrs');
+
+
+create table Employee1(id number primary key, name varchar2(50), gender varchar2(10), phone_no varchar2(50),department_id number not null,titile_id number);
+
+
+insert into Employee1 values(1,'bala','male','111111111,72626282782',1,1);
+insert into Employee1 values(2,'sala','female','111111111,72626282782',2,2);
+insert into Employee1 values(3,'anji','male','111111111,72626282782',1,1);
+insert into Employee1 values(4,'asha','female','111111111,72626282782',3,2);
+insert into Employee1 values(5,'srithi','male','111111111,72626282782'2,1);
+insert into Employee1 values(6,'madhavi','female','111111111,72626282782',1,2);
+
+
+
+
+
+
+create table Employeedetails(id number primary key, name varchar2(50), gender varchar2(10),monthysalary number,annalsalary number);
+
+
+insert into Employeedetails values(1,'nala','male',30000,450000);
+insert into Employeedetails values(2,'krishna','male',30000,450000);
+insert into Employeedetails values(3,'anvesh','male',30000,450000);
+insert into Employeedetails values(4,'prem','male',2400,45000);
+insert into Employeedetails values(5,'kumar','male',30000,450000);
+
+
+--------------------------------------SUB QUERY ------------------------
+
+
+create table product(id number primary key,name varchar2(10),quantity float,price float);
+
+insert into product values(1,'iphone11',20,200000);
+insert into product values(2,'iphone10',3,2004660);
+insert into product values(3,'iphone12',10,20023220);
+insert into product values(4,'iphone13',30,2034200);
+insert into product values(5,'iphone14',50,200264530);
+insert into product values(6,'iphone15',30,200000);
+insert into product values(7,'iphone16',20,2000453);
+
+
+
+
+select max(price) from product;
+
+select * from product order by desc fetch next 1 rows only;
+
+---subquery
+
+select * from product where price=(select max(price) from product);
+
+select * from Employee;
+select * from department;
+
+
+select * from employee where department_id=1;
+select dept_id from department where dept_name='hr';
+
+--using = symbole return the single value
+select * from employee where department_id=(select dept_id from department where dept_name='it');
+
+
+----usnig in clause return the multiple values
+select * from employee where department_id in (select dept_id from department);
+
+
+select * from Employeedetails;
+
+
+
+select id,name,gender from Employeedetails;
+
+
+select name from Employeedetails where id=2;
+
+select id,name,gender, (select name from department where id=2)from Employeedetails ;
+
+
 
 
 
 select * from product;
-select max(price) from product;
+
+
+
+select quantity*price as totalvalue , id from product;
+
+
+select * from
+(
+select quantity*price as totalvalue ,id from product
+);
+
+select * from
+(
+select quantity*price as totalvalue ,id,name from product
+);
+
+
+select totalvalue,id,name from
+(
+select quantity*price as totalvalue,id,name as name from product
+) where totalvalue>=40000
+
+
+
+
+
+
 
 
 
