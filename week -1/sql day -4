@@ -259,6 +259,24 @@ drop table product;
 select count(*) from product;
 
 
+------nvl function----
+nvl(value,'new value')
+
+select nvl(1,5) from dual;
+
+select nvl(null,5) from dual;
+create table employee(name varchar2(30),gender varchar2(20));
+insert into employee values(null,'male');
+insert into employee values('krishna',null);
+select nvl(name,'no name'), gender from employee;
+
+select nvl(name,'no name'), nvl(gender,'no gender') from employee;
+
+select * from Employee;
+
+
+
+
 
 
 

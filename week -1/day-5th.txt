@@ -1,28 +1,11 @@
+--------------------Normalization---------------------------
 
+-----normalization is design technic
+----------insert , delete, update the data very fast for using the normalization
 
-select  substr('john@gmail.com',-6,6) from dual;
-
-
-nvl(value, 'new value');
-select nvl(null,5) from dual;
-
-
-
-create table employee(name varchar2(20), gender varchar2(30));
-insert into employee values('jhon','m');
-insert into employee values(null,'m');
-insert into employee values('kiran',null);
-
-select * from employee;
-
-
-select nvl(name,'no name'), from employee;
-select nvl(name,'no name'), nvl(gender,'gender is not present') from employee;
-
-
------------------------Normalization----------------------
-
-----1NF--------
+---1st - normalform
+----every coloumn contains atomic value 
+-----every sell value inside a table must be single value.
 create table Employeedata(id number primary key, name varchar2(50), gender varchar2(10), departements varchar2(30), phone_no varchar2(50));
 
 insert into Employeedata values(1,'bala','male','hr','111111111,72626282782');
@@ -34,7 +17,10 @@ insert into Employeedata values(6,'madhavi','female','hr','111111111,72626282782
 
 
 select * from Employeedata;
+drop table Employeedata;
 
+
+-------------2nf-------------
 drop table Employeedata;
 
 
