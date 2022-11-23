@@ -1,0 +1,251 @@
+
+select 1 from dual
+union
+select 2 from dual;
+
+
+select 1 from dual
+union
+select 2 from dual
+union
+select 3 from dual
+union
+select 4 from dual
+union
+select 5 from dual;
+
+
+--the duplication values remove the union
+select 1 from dual
+union
+select 2 from dual
+union
+select 3 from dual
+union
+select 4 from dual
+union
+select 5 from dual
+union
+select 5 from dual
+union
+select 3 from dual;
+
+
+
+
+
+
+create table department1(mst_dept_id number primary key,name varchar2(30), dep_name varchar2(20),gender varchar2(10),salary float,reg_date date);
+
+insert into department1 values(1,'bala','hr','male',20000,'01-nov-2022');
+insert into department1 values(2,'krishna','admin','femal',30000,'08-nov-2022');
+insert into department1 values(3,'jaya','payroll','femal',34500,'17-nov-2022');
+insert into department1 values(4,'lakshman','hr''male',340000,'01-nov-2022');
+insert into department1 values(5,'prem','lab','female',340000,'02-nov-2022');
+insert into department1 values(6,'kumar','testing','female',340000,'03-nov-2022');
+insert into department1 values(7,'anvesh','hr','female',348000,'05-nov-2022');
+insert into department1 values(8,'siva','developer','female',340000,'07-nov-2022');
+
+
+
+
+
+create table department2(mst_dept_id number primary key,name varchar2(30), dep_name varchar2(20),gender varchar2(10),salary float,reg_date date);
+
+insert into department2 values(1,'bala','hr','male',20000,'01-nov-2022');
+insert into department2 values(2,'krishna','admin','femal',30000,'08-nov-2022');
+insert into department2 values(3,'jaya','payroll','femal',34500,'17-nov-2022');
+insert into department2 values(4,'priyanka','hr''male',340000,'01-nov-2022');
+insert into department2 values(5,'anjalai','lab','female',340000,'02-nov-2022');
+insert into department2 values(6,'kumar','testing','female',340000,'03-nov-2022');
+insert into department2 values(7,'meenakhi','hr','female',348000,'05-nov-2022');
+
+select * from department2
+union
+select * from department1;
+
+
+-----two tables are same coloums
+select mst_dept_id,name,gender from department2
+union
+select mst_dept_id,name,gender from department1;
+
+
+--the data type also same for both tables
+-------error
+select mst_dept_id,name,gender from department2
+union
+select name, mst_dept_id,gender from department1;
+
+---correct
+select mst_dept_id,name,gender from department2
+union
+select mst_dept_id,name,gender from department1;
+
+
+
+-----union all --Its not remove the duplication values:-
+
+select mst_dept_id,name,gender from department2
+union all
+select mst_dept_id,name,gender from department1;
+
+
+----INTERSECT ----only give will the common rows in the given given tables:
+select mst_dept_id,name,gender from department2
+intersect
+select mst_dept_id,name,gender from department1;
+
+select * from department2
+intersect
+select * from department1;
+
+
+
+---------------------------------pseudo cloumns--------------------------
+-----pseudo cloumns---- It behaves like it is a column of the table. rowid,rownum,next value,current value
+
+
+
+create sequence emp_sequence;
+minvalue 1
+maxvalue 10
+start with 1
+increment by 1;
+
+select emp_sequence.nextval from dual;
+
+select emp_sequence.currval from dual;
+
+
+
+------------------------------RowNum--------------------------------------
+
+
+select * from department1;
+
+
+
+select mst_dept_id,name,gender from department1;
+
+select mst_dept_id,name,gender,salary,rownum from department1;
+
+
+----first given the rownum after that order the data perticular coloumn
+select mst_dept_id,name,gender,salary,rownum from department1 where rownum<3 order by salary;
+
+
+select mst_dept_id,name,gender,salary,rownum from department1 where rownum<3 ;
+
+select mst_dept_id,name,gender,salary,rownum from department1 where rownum<=4 ;
+
+
+
+
+select mst_dept_id,name,gender,salary,rownum from department1 where rownum<= 4;
+minus
+select mst_dept_id,name,gender,salary,rownum from department1 where rownum<= 2;
+
+
+
+------------------------------RowId---------------------------
+---datablockno,fileno\
+----rowid is unique for each row
+select mst_dept_id,name,gender,salary,rowid from department1;
+
+select max(rowid) from department1;
+
+select min(rowid) from department1;
+
+
+
+select mst_dept_id,name,gender,salary,rowid,rownum from department1;
+
+
+
+---------------------------------------SQL LOADER------------------------------
+
+-----that is used the load the data from the csv files to the data tables (in a fraction seconds)
+-----
+
+
+/*
+data - csv
+control files
+sql loaders
+data base
+*/
+
+
+control files syntax:-
+    1.load the data
+    2.infile 'path to csv file in your machine '
+    3.insert into table [table_name]
+    4.field dterminatied by ','
+    5.TRAILING NULLCOLS
+    (
+    COLOUMN 1,
+    COLOUMN 2,
+    -----
+    );
+
+
+----control file creation:-
+load data
+infile 'c:\users\admin\destktop\data.csv'
+insert into table_name
+field terminated by ',' optionally enclosed by '"'
+trailing nullclos
+(
+rool_no,
+name
+)
+
+
+--cmd-
+
+------sql loader
+command - sqlldr
+
+
+--for example 
+sqllder userid = admin/admin@2323 control="c:\users\admin\destktop\data.ctl"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
