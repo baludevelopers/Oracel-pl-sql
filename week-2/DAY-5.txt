@@ -1,0 +1,190 @@
+-------------------substr - inbuild-------------------------
+
+select SUBSTR('balakrishna@gmail.com',1,4) from dual;
+
+
+--a function may or may not have parameters ( if multiple parameter are then separate them with ',')
+
+------A function must have a return type( declare teturn type with RETURN keyword)
+
+----IS - use keyword if you want to declare the variables for the function body.
+
+-----AS - use this keyword if you dont want to declare thevariables for the function body ( ATAND ALONE FUNCTION)
+
+
+
+
+
+
+------create or replace function functio_name (parameter_name parameter_type, parameter_anme parameter_type,.........)
+
+--a function with have one parameter.
+------create or replace function functio_name (parameter_name parameter_type)
+
+---with have no parameters.
+------create or replace function functio_name ()
+
+----------------return return_type
+----------IS | AS 
+---BEGIN
+        ---< fUNCTION BODY>
+-----END;
+
+
+
+----PARAMETER LIST:-
+    1. IN - It can be referenced by the function. we can not change the value of theis parameter inside the function body.
+    
+    2. OUT - It can no tbe referenced by the function .we can orriede 
+
+
+
+
+create table Employeedetails(id number primary key, name varchar2(50), gender varchar2(10),monthysalary number,annalsalary number);
+
+
+insert into Employeedetails values(1,'nala','male',30000,450000);
+insert into Employeedetails values(2,'krishna','male',30000,450000);
+insert into Employeedetails values(3,'anvesh','male',30000,450000);
+insert into Employeedetails values(4,'prem','male',2400,45000);
+insert into Employeedetails values(5,'kumar','male',30000,450000);
+insert into Employeedetails values(6,'kumar','male',30000,450000);
+
+
+create or replace function Get_Total_Employee
+return number 
+IS
+total_count number := 0;
+BEGIN
+    
+    
+    --seelct count(*) from employeedetails
+    select count(*) into total_count from Employeedetails;
+    return total_count;
+    
+END;
+
+select Get_Total_Employee() from dual;
+
+----------------------IN----------------
+
+create or replace function Get_Employee_Name(e_id IN number)
+return varchar(2)
+IS
+Employee_name varchar2(20) := 0;
+BEGIN
+    
+    
+    select name into Employee_name form Employeedetails where id=e_id;
+    return Employee_name;
+    
+END;
+
+
+select * from Employeedetails;
+select Get_Employee_Nam(1) from dual;
+
+---------------------------------------
+
+--------------IN , OUT
+
+create or replace function Get_Employee_Name_By_Gender_and_ID(e_Gender IN varchar2,e_id IN OUT number)
+return varchar2
+IS
+Employee_name varchar2(20) := 0;
+BEGIN
+    
+    
+    select name into Employee_name form Employeedetails where gender=e_Gender and  id=e_id;
+    return Employee_name;
+    
+END;
+
+declare
+    out_name varchar2(20);
+    emp_id number := 1;
+BEGIN
+    out_name := Get_Employee_Name_By_Gender_and_ID('M',emp_id);
+    dbms_output.put_line('name of the employee : '||out_name);
+    dbms_output.put_line('ID of the employee : '||emp_id);
+END;
+
+select Get_Employee_Name_By_Gender_and_ID('m',1) from dual;
+
+
+
+---------------------------------------------STORED PROCEDURE-------------------------------------
+--a function may or may not have parameters ( if multiple parameter are then separate them with ',')
+
+------A function must have a return type( declare teturn type with RETURN keyword)
+
+----IS - use keyword if you want to declare the variables for the function body.
+
+-----AS - use this keyword if you dont want to declare thevariables for the function body ( ATAND ALONE FUNCTION)
+
+
+
+
+----PARAMETER LIST:-
+    1. IN - It can be referenced by the function. we can not change the value of theis parameter inside the function body.
+    
+    2. OUT - It can no tbe referenced by the function .we can orriede  the value of this parameter inside the function body.
+    3. IN OUT  - It can be refernced and can be override inside the function bopdy.
+    -------procedures can not be used in the select statements
+    
+
+
+
+
+------create or replace procedure procedure_name(parameter list)
+
+----------IS | AS 
+---BEGIN
+        ---<PROCEDURE BODY>
+---END;
+
+
+
+create OR REPLACE procedure Print_value (e_name varchar2)
+AS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('NAME OF EMPLOYEE : '||e_name);
+END;
+
+
+
+execute Print_value('krishna');
+
+-----
+create or replace  procedure Employee_Name_By_ID(e_id IN varchar2,e_name IN OUT number)
+as
+BEGIN
+    select name into e_name form Employeedetails where id=e_id;
+END;
+
+
+declare
+name varchar2(20);
+begin
+    Employee_Name_By_ID(1,name);
+    dbms_output.put_line('name of employee : '|| name);
+end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

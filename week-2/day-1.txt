@@ -1,3 +1,190 @@
+
+----------------------------------views------------------------------------------
+
+create table employee(id number primary key,name varchar2(30),department varchar2(40),gander varchar2(30));
+
+insert into employee values(1,'raju','hr','male');
+insert into employee values(2,'balu','planning','male');
+insert into employee values(3,'anji','lab','male');
+insert into employee values(4,'kireen','testing','male');
+insert into employee values(5,'anjali','design','female');
+
+select * from employee;
+drop table employee;
+----row level secururity
+create view plannigdata as
+select * from employee where department='hr';
+
+--coloumn table
+
+
+/*views are using to hiding the data low level security
+
+creating the vertual table 
+coloumn level security is high level security
+
+the data store in different table
+it is not modifing the data 
+
+*/
+
+select * from plannigdata;
+
+--------------------------sequnces-----------------------------
+
+create sequence emp_sequence
+min value 1
+max value 10
+start with 1
+increment by 1;
+
+
+alter sequence emp_sequence
+maxvalue 30;
+
+alter sequence emp_sequence
+increment by 3;
+
+alter sequence emp_sequence
+cache 5;
+
+alter sequence emp_sequence
+cycle;
+
+
+
+drop sequence emp_sequence;
+
+select emp_sequence.nextval from dual;
+
+
+
+
+create sequence emp_sequence1
+min value 1
+start with 1
+increment by 1;
+
+
+
+create table employee1(id number primary key,name varchar2(30),department varchar2(40),gander varchar2(30));
+
+insert into employee1 values(emp_sequence1.nextval,'raju','hr','male');
+insert into employee1 values(emp_sequence1.nextval,'balu','planning','male');
+insert into employee1 values(emp_sequence1.nextval,'anji','lab','male');
+insert into employee1 values(emp_sequence1.nextval,'kireen','testing','male');
+insert into employee1 values(emp_sequence1.nextval,'anjali','design','female');
+
+
+select * from employee1;
+
+select emp_sequence1.nextval from employee1;
+
+drop sequence emp_sequence;
+
+
+----------------------------synonym----------------------
+
+/*
+we want give the diffrent name of the table
+but this is only for vertually changed 
+
+this is only used for the changed the database object(tables)
+*/
+create table department(id number primary key,name varchar2(30),department varchar2(40),gander varchar2(30));
+
+create sequence sec_department;
+insert into department values(sec_department.nextval,'raju','hr','male');
+insert into department values(sec_department.nextval,'balu','planning','male');
+insert into department values(sec_department.nextval,'anji','lab','male');
+insert into department values(sec_department.nextval,'kireen','testing','male');
+insert into department values(sec_department.nextval,'anjali','design','female');
+
+
+
+
+create synonym dept_detials
+for department;
+--update synonym name
+create synonym dep_details1
+for department;
+
+select * from department;
+
+
+---------------------------------Analytical function-------------------------------
+create table department1(id number primary key,name varchar2(30),department varchar2(40),gander varchar2(30),salary float);
+
+create sequence sec_department1;
+insert into department1 values(sec_department1.nextval,'raju','hr','male',50000);
+insert into department1 values(sec_department1.nextval,'balu','planning','male',8727);
+insert into department1 values(sec_department1.nextval,'anji','lab','male'70000);
+insert into department1 values(sec_department1.nextval,'kireen','testing','male',7000);
+insert into department1 values(sec_department1.nextval,'anjali','design','female',7000);
+
+
+
+select  * from department1;
+
+
+select  salary from department1;
+
+--to eleminate the duplicate values from the table coloumn for using the distinct key word
+select  distinct salary from department1;
+
+
+--hightest salary for all coloums
+select  first_value(salary) over(order by salary desc)from department1;
+---using distinct key eliminate duplicate values
+select  distinct first_value(salary) over(order by salary desc)from department1;
+
+
+select  distinct first_value(salary) over(order by salary asc)from department1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ----joins in sql---
 --pl/sql -----
 
